@@ -75,14 +75,24 @@ public class CricketAnalyzer {
         String sortedDataJson=new Gson().toJson(csvFileList);
         return sortedDataJson;
     }
-    public String getSortedStrickRateOfFoursAndSixs() throws CricketAnalyzerException {
+    public String getSortedStrikeRateOfFoursAndSixs() throws CricketAnalyzerException {
         if(csvFileList.size()==0 || csvFileList==null)
             throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
-        Comparator<CricketAnalyzerDAO> runnerComparator=Comparator.comparing(csvRunner -> csvRunner.strikeRate);
+        Comparator<CricketAnalyzerDAO> runnerComparator=Comparator.comparing(census -> census.strikeRate);
         this.sort(runnerComparator);
         String sortedDataJson=new Gson().toJson(csvFileList);
         return sortedDataJson;
     }
+
+    public String getSortedDataAverageWithBestSR() throws CricketAnalyzerException {
+        if(csvFileList.size()==0 || csvFileList==null)
+            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
+        Comparator<CricketAnalyzerDAO> runnerComparator=Comparator.comparing(census -> census.average);
+        this.sort(runnerComparator);
+        String sortedDataJson=new Gson().toJson(csvFileList);
+        return sortedDataJson;
+    }
+
     private void sort(Comparator<CricketAnalyzerDAO> iplComparator) {
         for (int i = 0; i < csvFileList.size() - 1; i++) {
             for (int j = 0; j < csvFileList.size() - i - 1; j++) {
