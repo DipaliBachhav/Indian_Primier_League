@@ -1,5 +1,6 @@
 package com.CricketData;
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -37,6 +38,15 @@ public class CricketAnalyzerTest {
             Assert.assertEquals(0, numOfRecords);
         } catch (CricketAnalyzerException e) {
         }
+    }
+
+    @Test
+    public void whenGivenBatsmanStats_ShouldReturnPlayerWithBestBattingAverage() throws CricketAnalyzerException {
+        CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+        cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
+        String sortedData = cricketAnalyzer.bestBattingAverage();
+        BatsMansCSVFile[] iplCSV = new Gson().fromJson(sortedData, BatsMansCSVFile[].class);
+        Assert.assertEquals("Ms Dhoni", iplCSV[0].player);
     }
 
 }

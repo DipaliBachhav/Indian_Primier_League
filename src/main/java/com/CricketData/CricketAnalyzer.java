@@ -39,7 +39,7 @@ public class CricketAnalyzer {
                     CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM);
         }
     }
-    public  String bestBattingaverage() throws CricketAnalyzerException {
+    public  String bestBattingAverage() throws CricketAnalyzerException {
         if (csvFileList.size() == 0 || csvFileList == null)
             throw new CricketAnalyzerException("No Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<BatsMansCSVFile> censusCSVComparator = Comparator.comparing(census -> census.average);
