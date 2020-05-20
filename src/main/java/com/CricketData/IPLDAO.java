@@ -1,23 +1,32 @@
 package com.CricketData;
 
-public class IplWicketDAO {
+public class IPLDAO {
     public String player;
-    public int match;
-    public int innings;
-    public double over;
+    public int four;
+    public int six;
     public int runs;
+    public double average;
+    public double strikeRate;
+
+    public int match;
+    public double over;
+    public int innings;
     public int wickets;
     public double bestBowlingIn;
-    public double average;
     public double economyRate;
-    public double strikeRate;
     public int fourWickets;
     public int fiveWickets;
 
-    public IplWicketDAO() {
-    }
 
-    public IplWicketDAO(IPLWicketDataCSV iplWicketDataCSV) {
+    public IPLDAO(BatsMansCSVFile batsMansCSVFileCsv) {
+        this.player = batsMansCSVFileCsv.player;
+        this.four = batsMansCSVFileCsv.four;
+        this.six = batsMansCSVFileCsv.six;
+        this.runs = batsMansCSVFileCsv.runs;
+        this.average = batsMansCSVFileCsv.average;
+        this.strikeRate = batsMansCSVFileCsv.strikeRate;
+    }
+    public IPLDAO(IPLWicketDataCSV iplWicketDataCSV) {
         this.player = iplWicketDataCSV.player;
         this.match = iplWicketDataCSV.match;
         this.innings = iplWicketDataCSV.innings;
@@ -32,4 +41,3 @@ public class IplWicketDAO {
         this.fiveWickets = iplWicketDataCSV.fiveWickets;
     }
 }
-
