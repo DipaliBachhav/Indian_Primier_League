@@ -94,25 +94,37 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnFourAndSix() throws CricketAnalyzerException {
+    public void givenCricketLeagueData_whenSortedStrikeRateOfFoursAndSix_shouldReturnFourAndSix() throws CricketAnalyzerException {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
-            String sortedStrickRateOfFoursAndSixs = cricketAnalyzer.getSortedStrikeRateOfFoursAndSixs();
-            BatsMansCSVFile[] iplRunCSV = new Gson().fromJson(sortedStrickRateOfFoursAndSixs, BatsMansCSVFile[].class);
+            String sortedStrikeRateOfFoursAndSix = cricketAnalyzer.getSortedStrikeRateOfFoursAndSixs();
+            BatsMansCSVFile[] iplRunCSV = new Gson().fromJson(sortedStrikeRateOfFoursAndSix, BatsMansCSVFile[].class);
             Assert.assertEquals("Ishant Sharma", iplRunCSV[0].player);
         } catch (CricketAnalyzerException e) {
         }
     }
 
     @Test
-    public void GivenCricketLeagueData_whenSorted_ShouldReturnAverageWithBestSR() throws CricketAnalyzerException {
+    public void GivenCricketLeagueData_whenSorted_ShouldReturnAverageWithBestStrikeRate() throws CricketAnalyzerException {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
             String battingaverage = cricketAnalyzer.getSortedDataAverageWithBestSR();
             BatsMansCSVFile[] iplRunCSV = new Gson().fromJson(battingaverage, BatsMansCSVFile[].class);
             Assert.assertEquals("MS Dhoni", iplRunCSV[0].player);
+        } catch (CricketAnalyzerException e) {
+        }
+    }
+
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedRunWithBestAverage() throws CricketAnalyzerException {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
+            String runsWithBestAverage = cricketAnalyzer.getSortedRunsWithBestAverage();
+            BatsMansCSVFile[] iplRunCSV = new Gson().fromJson(runsWithBestAverage, BatsMansCSVFile[].class);
+            Assert.assertEquals("David Warner ", iplRunCSV[0].player);
         } catch (CricketAnalyzerException e) {
         }
     }

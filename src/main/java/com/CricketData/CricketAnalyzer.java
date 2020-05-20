@@ -78,8 +78,11 @@ public class CricketAnalyzer {
     public String getSortedStrikeRateOfFoursAndSixs() throws CricketAnalyzerException {
         if(csvFileList.size()==0 || csvFileList==null)
             throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
-        Comparator<CricketAnalyzerDAO> runnerComparator=Comparator.comparing(census -> census.strikeRate);
-        this.sort(runnerComparator);
+        Comparator<CricketAnalyzerDAO> sortStrikeComparator = Comparator.comparing(census -> census.strikeRate);
+        Comparator<CricketAnalyzerDAO> sortSixComparator = sortStrikeComparator.thenComparing(census -> census.strikeRate);
+        Comparator<CricketAnalyzerDAO> sortFourCompartor=sortSixComparator.thenComparing(census->census.four);
+        Comparator<CricketAnalyzerDAO> avgComparator=Comparator.comparing(census -> census.strikeRate);
+        this.sort(avgComparator);
         String sortedDataJson=new Gson().toJson(csvFileList);
         return sortedDataJson;
     }
@@ -87,7 +90,18 @@ public class CricketAnalyzer {
     public String getSortedDataAverageWithBestSR() throws CricketAnalyzerException {
         if(csvFileList.size()==0 || csvFileList==null)
             throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
-        Comparator<CricketAnalyzerDAO> runnerComparator=Comparator.comparing(census -> census.average);
+        Comparator<CricketAnalyzerDAO> sortStrikeComparator = Comparator.comparing(census -> census.strikeRate);
+        Comparator<CricketAnalyzerDAO> avgComparator=Comparator.comparing(census -> census.average);
+        this.sort(avgComparator);
+        String sortedDataJson=new Gson().toJson(csvFileList);
+        return sortedDataJson;
+    }
+
+    public String getSortedRunsWithBestAverage() throws CricketAnalyzerException {
+        if(csvFileList.size()==0 || csvFileList==null)
+            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
+        Comparator<CricketAnalyzerDAO> avgComparator=Comparator.comparing(census -> census.average);
+        Comparator<CricketAnalyzerDAO> runnerComparator=Comparator.comparing(census -> census.runs);
         this.sort(runnerComparator);
         String sortedDataJson=new Gson().toJson(csvFileList);
         return sortedDataJson;
