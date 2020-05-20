@@ -5,15 +5,11 @@ public class CricketAnalyzerException extends Exception{
         IPL_FILE_PROBLEM,UNABLE_TO_PARSE, NO_DATA
     }
 
-    CricketAnalyzerException.ExceptionType type;
+    ExceptionType type;
 
     public CricketAnalyzerException(String message, CricketAnalyzerException.ExceptionType type) {
         super(message);
         this.type = type;
     }
 
-    public CricketAnalyzerException(String message, String name) {
-        super(message);
-        this.type = CricketAnalyzerException.ExceptionType.valueOf(name);
-    }
 }

@@ -7,19 +7,20 @@ public class BatsMansCSVFile {
     @CsvBindByName(column = "PLAYER", required = true)
     public String player;
 
-    @CsvBindByName(column = "4s", required = true)
+    @CsvBindByName(column = "4s")
     public int four;
 
-    @CsvBindByName(column = "6s", required = true)
+    @CsvBindByName(column = "6s")
     public int six;
 
-    @CsvBindByName(column = "Runs", required = true)
+    @CsvBindByName(column = "Runs")
     public int runs;
 
-    @CsvBindByName(column = "Avg", required = true)
+
+    @CsvBindByName(column = "Avg")
     public double average;
 
-    @CsvBindByName(column = "SR", required = true)
+    @CsvBindByName(column = "SR")
     public double strikeRate;
 
     public BatsMansCSVFile() {
