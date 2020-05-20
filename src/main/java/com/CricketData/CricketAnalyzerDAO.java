@@ -3,8 +3,8 @@ package com.CricketData;
 public class CricketAnalyzerDAO {
 
     public String player;
-    public int four;
-    public int six;
+    public double four;
+    public double six;
     public int runs;
     public double average;
     public double strikeRate;

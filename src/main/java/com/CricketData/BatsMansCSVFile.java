@@ -8,10 +8,10 @@ public class BatsMansCSVFile {
     public String player;
 
     @CsvBindByName(column = "4s")
-    public int four;
+    public double four;
 
     @CsvBindByName(column = "6s")
-    public int six;
+    public double six;
 
     @CsvBindByName(column = "Runs")
     public int runs;

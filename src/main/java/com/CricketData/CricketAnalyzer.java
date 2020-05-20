@@ -58,7 +58,23 @@ public class CricketAnalyzer {
         String sortedDataJson=new Gson().toJson(csvFileList);
         return sortedDataJson;
     }
-    
+    public String getMaximumSixesInMatch() throws CricketAnalyzerException {
+        if(csvFileList.size()==0 || csvFileList==null)
+            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
+        Comparator<CricketAnalyzerDAO> runnerComparator=Comparator.comparing(census -> census.six);
+        this.sort(runnerComparator);
+        String sortedDataJson=new Gson().toJson(csvFileList);
+        return sortedDataJson;
+    }
+
+    public String getMaximumFoursInMatch() throws CricketAnalyzerException {
+        if(csvFileList.size()==0 || csvFileList==null)
+            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
+        Comparator<CricketAnalyzerDAO> runnerComparator=Comparator.comparing(census -> census.four);
+        this.sort(runnerComparator);
+        String sortedDataJson=new Gson().toJson(csvFileList);
+        return sortedDataJson;
+    }
     private void sort(Comparator<CricketAnalyzerDAO> iplComparator) {
         for (int i = 0; i < csvFileList.size() - 1; i++) {
             for (int j = 0; j < csvFileList.size() - i - 1; j++) {
