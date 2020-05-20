@@ -11,6 +11,7 @@ public class CricketAnalyzerTest {
     private static final String BATSMAN_DATA = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostRuns.csv";
     private static final String BATSMAN_DATA_INCORRECT_FILE = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostWkts.csv";
     private static final String BATSMAN_DATA_EMPTY_FILE = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostRunsEmpty.csv";
+    private static final String WICKETS_DATA = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostWkts.csv";
 
 
     @Test
@@ -125,6 +126,16 @@ public class CricketAnalyzerTest {
             String runsWithBestAverage = cricketAnalyzer.getSortedRunsWithBestAverage();
             BatsMansCSVFile[] iplRunCSV = new Gson().fromJson(runsWithBestAverage, BatsMansCSVFile[].class);
             Assert.assertEquals("David Warner ", iplRunCSV[0].player);
+        } catch (CricketAnalyzerException e) {
+        }
+    }
+
+    @Test
+    public void givenIPLWicketsData_shouldReturnTotalNumberOfPlayers() {
+        try {
+            CricketAnalyzer cricketLeagueAnalysis = new CricketAnalyzer();
+            int numOfRecords = cricketLeagueAnalysis.loadWicketData(WICKETS_DATA);
+            Assert.assertEquals(99, numOfRecords);
         } catch (CricketAnalyzerException e) {
         }
     }

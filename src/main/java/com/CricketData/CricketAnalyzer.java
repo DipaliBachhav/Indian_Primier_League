@@ -15,19 +15,19 @@ import java.util.stream.StreamSupport;
 
 public class CricketAnalyzer {
     List<CricketAnalyzerDAO> csvFileList = null;
-    Map<String, CricketAnalyzerDAO> IPLMap=null ;
+    Map<String, CricketAnalyzerDAO> IPLMap = null;
 
 
     public CricketAnalyzer() {
-        IPLMap = new HashMap<String,CricketAnalyzerDAO>();
-        csvFileList= new ArrayList<>();
+        IPLMap = new HashMap<String, CricketAnalyzerDAO>();
+        csvFileList = new ArrayList<>();
     }
 
     public int loadCricketLeagueData(String csvFilePath) throws CricketAnalyzerException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<BatsMansCSVFile> csvFileIterator = csvBuilder
-                                                    .getCSVFileIterator(reader, BatsMansCSVFile.class);
+                    .getCSVFileIterator(reader, BatsMansCSVFile.class);
             Iterable<BatsMansCSVFile> csvIterable = () -> csvFileIterator;
             StreamSupport.stream(csvIterable.spliterator(), false)
                     .forEach(iplDataCsv -> {
@@ -40,6 +40,26 @@ public class CricketAnalyzer {
                     CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM);
         }
     }
+
+
+    public int loadWicketData(String csvFilePath) throws CricketAnalyzerException {
+        try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
+            ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
+            Iterator<IPLWicketDataCSV> csvFileIterator = csvBuilder
+                    .getCSVFileIterator(reader, IPLWicketDataCSV.class);
+            Iterable<IPLWicketDataCSV> csvIterable = () -> csvFileIterator;
+            StreamSupport.stream(csvIterable.spliterator(), false)
+                    .forEach(iplDataCsv -> {
+                        IPLMap.put(iplDataCsv.player, new CricketAnalyzerDAO(iplDataCsv));
+                        csvFileList.add(new CricketAnalyzerDAO(iplDataCsv));
+                    });
+            return this.IPLMap.size();
+        } catch (IOException | CSVBuilderException e) {
+            throw new CricketAnalyzerException(e.getMessage(),
+                    CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM);
+        }
+    }
+
 
     public String getBattingAverageWiseSorted() throws CricketAnalyzerException {
         if (csvFileList.size() == 0 || csvFileList == null)
@@ -119,5 +139,6 @@ public class CricketAnalyzer {
             }
         }
     }
+
 
 }

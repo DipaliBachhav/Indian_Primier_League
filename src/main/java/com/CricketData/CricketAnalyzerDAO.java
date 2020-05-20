@@ -17,4 +17,7 @@ public class CricketAnalyzerDAO {
         this.average = batsMansCSVFileCsv.average;
         this.strikeRate = batsMansCSVFileCsv.strikeRate;
     }
+
+    public CricketAnalyzerDAO(IPLWicketDataCSV iplDataCsv) {
+    }
 }
