@@ -139,4 +139,14 @@ public class CricketAnalyzerTest {
         } catch (CricketAnalyzerException e) {
         }
     }
+    @Test
+    public void givenIpl2019MostWicketsCSVFile_ShouldReturnPlayerName_WhoHasTopBowlingAverage() {
+        try {
+            CricketAnalyzer cricketLeagueAnalyser=new CricketAnalyzer();
+            cricketLeagueAnalyser.loadWicketData(WICKETS_DATA);
+            String sortedIPLData=cricketLeagueAnalyser.getSortedWicketsAverageData();
+            IPLWicketDataCSV[] iplWicketSheetCSV = new Gson().fromJson(sortedIPLData, IPLWicketDataCSV[].class);
+            Assert.assertEquals("Krishnappa Gowtham", iplWicketSheetCSV[0].player);
+        } catch (CricketAnalyzerException e) { }
+    }
 }
