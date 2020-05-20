@@ -90,8 +90,15 @@ public class CricketAnalyzerTest {
                 BatsMansCSVFile[] iplRunCSV = new Gson().fromJson(sixesInMatch, BatsMansCSVFile[].class);
                 Assert.assertEquals("Andre Russell",iplRunCSV[0].player);
             } catch (CricketAnalyzerException e) {
-
             }
         }
 
+    @Test
+    public void givenCricketLeagueData_whenSorted_shouldReturnFourAndSix() throws CricketAnalyzerException {
+        CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+        cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
+        String sortedStrickRateOfFoursAndSixs = cricketAnalyzer.getSortedStrickRateOfFoursAndSixs();
+        BatsMansCSVFile[] iplRunCSV = new Gson().fromJson(sortedStrickRateOfFoursAndSixs, BatsMansCSVFile[].class);
+        Assert.assertEquals("Ishant Sharma",iplRunCSV[0].player);
+    }
     }
