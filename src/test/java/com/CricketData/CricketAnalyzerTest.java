@@ -149,4 +149,15 @@ public class CricketAnalyzerTest {
             Assert.assertEquals("Krishnappa Gowtham", iplWicketSheetCSV[0].player);
         } catch (CricketAnalyzerException e) { }
     }
+    @Test
+    public void givenIpl2019MostWicketsCSVFile_ShouldReturnPlayerName_WhoHasTopBowlingStrikeRate() throws CricketAnalyzerException {
+        try {
+            CricketAnalyzer cricketLeagueAnalyser=new CricketAnalyzer();
+            cricketLeagueAnalyser.loadWicketData(WICKETS_DATA);
+            String sortedIPLData=cricketLeagueAnalyser.getSortedByBowlingStrikeRate();
+            IPLWicketDataCSV[] iplWicketSheetCSV = new Gson().fromJson(sortedIPLData, IPLWicketDataCSV[].class);
+            Assert.assertEquals("Krishnappa Gowtham", iplWicketSheetCSV[0].player);
+        } catch (CricketAnalyzerException e) {
+        }
+    }
 }

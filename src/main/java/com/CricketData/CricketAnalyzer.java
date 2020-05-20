@@ -135,6 +135,14 @@ public class CricketAnalyzer {
         String sortedCensusJson = new Gson().toJson(csvFileList);
         return sortedCensusJson;
     }
+    public String getSortedByBowlingStrikeRate() throws CricketAnalyzerException {
+        if(csvFileList.size()==0 || csvFileList==null)
+            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
+        Comparator<IPLDAO> runsComparator = Comparator.comparing( census-> census.strikeRate);
+        this.sort(runsComparator);
+        String sortedCensusJson = new Gson().toJson(csvFileList);
+        return sortedCensusJson;
+    }
 
     private void sort(Comparator<IPLDAO> iplComparator) {
         for (int i = 0; i < csvFileList.size() - 1; i++) {
@@ -148,6 +156,7 @@ public class CricketAnalyzer {
             }
         }
     }
+
 
 
 }
