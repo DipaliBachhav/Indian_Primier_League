@@ -10,8 +10,12 @@ import java.lang.reflect.Type;
 public class CricketAnalyzerTest {
     private static final String BATSMAN_DATA = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostRuns.csv";
     private static final String BATSMAN_DATA_INCORRECT_FILE = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostWkts.csv";
+    private static final String BATSMAN_DATA_WITH_WRONG_DELIMETER = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostRuns,csv";
     private static final String BATSMAN_DATA_EMPTY_FILE = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostRunsEmpty.csv";
     private static final String WICKETS_DATA = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostWkts.csv";
+    private static final String WICKETS_DATA_WRONG_FILE_NAME = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetWickets.csv";
+    private static final String WICKETS_DATA_WRONG_FILE_TYPE = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetWickets.txt";
+    private static final String WICKETS_DATA_WRONG_FILE_DELIMETER = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetWickets,csv";
 
 
     @Test
@@ -40,6 +44,16 @@ public class CricketAnalyzerTest {
         try {
             CricketAnalyzer cricketLeagueAnalysis = new CricketAnalyzer();
             int numOfRecords = cricketLeagueAnalysis.loadCricketLeagueData(BATSMAN_DATA_EMPTY_FILE);
+            Assert.assertEquals(0, numOfRecords);
+        } catch (CricketAnalyzerException e) {
+        }
+    }
+
+    @Test
+    public void givenIPLBatsmanData_shouldReturnWrongFileDelimeterCSVFile() {
+        try {
+            CricketAnalyzer cricketLeagueAnalysis = new CricketAnalyzer();
+            int numOfRecords = cricketLeagueAnalysis.loadCricketLeagueData(BATSMAN_DATA_WITH_WRONG_DELIMETER);
             Assert.assertEquals(0, numOfRecords);
         } catch (CricketAnalyzerException e) {
         }
@@ -139,6 +153,35 @@ public class CricketAnalyzerTest {
         } catch (CricketAnalyzerException e) {
         }
     }
+        @Test
+        public void givenIPLWicketsData_shouldReturnWrongFileName() {
+            try {
+                CricketAnalyzer cricketLeagueAnalysis = new CricketAnalyzer();
+                int numOfRecords = cricketLeagueAnalysis.loadWicketData(WICKETS_DATA_WRONG_FILE_NAME);
+                Assert.assertEquals(99, numOfRecords);
+            } catch (CricketAnalyzerException e) {
+            }
+    }
+
+    @Test
+    public void givenIPLWicketsData_shouldReturnWrongFileType() {
+        try {
+            CricketAnalyzer cricketLeagueAnalysis = new CricketAnalyzer();
+            int numOfRecords = cricketLeagueAnalysis.loadWicketData(WICKETS_DATA_WRONG_FILE_TYPE);
+            Assert.assertEquals(99, numOfRecords);
+        } catch (CricketAnalyzerException e) {
+        }
+    }
+    @Test
+    public void givenIPLWicketsData_shouldReturnWrongFileDelimeter() {
+        try {
+            CricketAnalyzer cricketLeagueAnalysis = new CricketAnalyzer();
+            int numOfRecords = cricketLeagueAnalysis.loadWicketData(WICKETS_DATA_WRONG_FILE_DELIMETER);
+            Assert.assertEquals(99, numOfRecords);
+        } catch (CricketAnalyzerException e) {
+        }
+    }
+
     @Test
     public void givenIplWicketsCSVFile_ShouldReturnPlayerName_WhoHasTopBowlingAverage() {
         try {

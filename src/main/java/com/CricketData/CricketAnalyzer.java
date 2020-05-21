@@ -41,7 +41,6 @@ public class CricketAnalyzer {
         }
     }
 
-
     public int loadWicketData(String csvFilePath) throws CricketAnalyzerException {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
