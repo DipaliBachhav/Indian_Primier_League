@@ -152,6 +152,18 @@ public class CricketAnalyzer {
         return sortedCensusJson;
     }
 
+    public String getBowlingStrikeRateWiseSortingWith5wAnd4wOnData() throws CricketAnalyzerException {
+        if (csvFileList == null || csvFileList.size() == 0) {
+            throw new CricketAnalyzerException("No Census Data", CricketAnalyzerException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> sortStrikeRateComparator = Comparator.comparing(census -> census.strikeRate);
+        Comparator<IPLDAO> sort4WComparator = sortStrikeRateComparator.thenComparing(census -> census.fourWickets);
+        Comparator<IPLDAO> sort5WCompartor = sort4WComparator.thenComparing(census -> census.fiveWickets);
+        this.sort(sort5WCompartor);
+        String sorted4sData = new Gson().toJson(csvFileList);
+        return sorted4sData;
+    }
+
     private void sort(Comparator<IPLDAO> iplComparator) {
         for (int i = 0; i < csvFileList.size() - 1; i++) {
             for (int j = 0; j < csvFileList.size() - i - 1; j++) {
