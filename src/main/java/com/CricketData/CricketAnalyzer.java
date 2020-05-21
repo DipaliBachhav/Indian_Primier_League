@@ -107,7 +107,7 @@ public class CricketAnalyzer {
         return sortedDataJson;
     }
 
-    public String getSortedDataAverageWithBestSR() throws CricketAnalyzerException {
+    public String getSortedDataAverageWithBestStrikeRate() throws CricketAnalyzerException {
         if(csvFileList.size()==0 || csvFileList==null)
             throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> sortStrikeComparator = Comparator.comparing(census -> census.strikeRate);

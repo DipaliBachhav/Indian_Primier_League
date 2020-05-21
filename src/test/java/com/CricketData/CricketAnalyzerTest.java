@@ -111,7 +111,7 @@ public class CricketAnalyzerTest {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
-            String battingaverage = cricketAnalyzer.getSortedDataAverageWithBestSR();
+            String battingaverage = cricketAnalyzer.getSortedDataAverageWithBestStrikeRate();
             BatsMansCSVFile[] iplRunCSV = new Gson().fromJson(battingaverage, BatsMansCSVFile[].class);
             Assert.assertEquals("MS Dhoni", iplRunCSV[0].player);
         } catch (CricketAnalyzerException e) {
@@ -172,11 +172,21 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenIplMostWicketsCSVFile_ShouldReturnBowlerName_HasBestStrikingRateWithFourAndFiveWickets() {
+    public void givenIplMostWicketsCSVFile_ShouldReturnBowlerName_HasBestStrikingRateWithFourAndFiveWickets() throws CricketAnalyzerException{
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadWicketData(WICKETS_DATA);
             String strikeRateWiseSortingWith5wAnd4wOnData = cricketAnalyzer.getBowlingStrikeRateWiseSortingWith5wAnd4wOnData();
+            IPLWicketDataCSV[] iplRunCSV = new Gson().fromJson(strikeRateWiseSortingWith5wAnd4wOnData, IPLWicketDataCSV[].class);
+            Assert.assertEquals("Krishnappa Gowtham", iplRunCSV[0].player);
+        } catch (CricketAnalyzerException e) { }
+    }
+    @Test
+    public void givenIplMostWicketsCSVFile_ShouldReturnBowlerName_HasAverageWithBestStrikeRate() throws CricketAnalyzerException{
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadWicketData(WICKETS_DATA);
+            String strikeRateWiseSortingWith5wAnd4wOnData = cricketAnalyzer.getSortedDataAverageWithBestStrikeRate();
             IPLWicketDataCSV[] iplRunCSV = new Gson().fromJson(strikeRateWiseSortingWith5wAnd4wOnData, IPLWicketDataCSV[].class);
             Assert.assertEquals("Krishnappa Gowtham", iplRunCSV[0].player);
         } catch (CricketAnalyzerException e) { }
