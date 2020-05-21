@@ -173,6 +173,15 @@ public class CricketAnalyzer {
         String sorted4sData = new Gson().toJson(csvFileList);
         return sorted4sData;
     }
+    public String getSortingOnBattingAndBowlingWithBestAverage() throws CricketAnalyzerException {
+        if (csvFileList == null || csvFileList.size() == 0) {
+            throw new CricketAnalyzerException("No Census Data", CricketAnalyzerException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> sortAvgerageComparator = Comparator.comparing(census -> census.average);
+        this.sort(sortAvgerageComparator);
+        String sorted4sData = new Gson().toJson(csvFileList);
+        return sorted4sData;
+    }
 
     private void sort(Comparator<IPLDAO> iplComparator) {
         for (int i = 0; i < csvFileList.size() - 1; i++) {
