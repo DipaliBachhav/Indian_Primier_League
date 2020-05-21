@@ -234,4 +234,15 @@ public class CricketAnalyzerTest {
             Assert.assertEquals("Krishnappa Gowtham", iplRunCSV[0].player);
         } catch (CricketAnalyzerException e) { }
     }
+
+    @Test
+    public void givenIPLWicketsSheet_whenSortedOnWicketsWithAvg_shouldReturnSortedResult() throws CricketAnalyzerException {
+        try {
+            CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
+            cricketAnalyzer.loadWicketData(WICKETS_DATA);
+            String wicketsWiseSortDataWithBestAvgerage = cricketAnalyzer.getWicketsWiseSortDataWithBestAvgerage();
+            IPLWicketDataCSV[] iplRunCSV = new Gson().fromJson(wicketsWiseSortDataWithBestAvgerage, IPLWicketDataCSV[].class);
+            Assert.assertEquals("Imran Tahir", iplRunCSV[0].player);
+        } catch (CricketAnalyzerException e) { }
+    }
 }

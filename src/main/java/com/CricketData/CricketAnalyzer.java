@@ -163,6 +163,17 @@ public class CricketAnalyzer {
         return sorted4sData;
     }
 
+    public String getWicketsWiseSortDataWithBestAvgerage() throws CricketAnalyzerException {
+        if (csvFileList == null || csvFileList.size() == 0) {
+            throw new CricketAnalyzerException("No Census Data", CricketAnalyzerException.ExceptionType.NO_DATA);
+        }
+        Comparator<IPLDAO> sortStrikeRateComparator = Comparator.comparing(census -> census.wickets);
+        Comparator<IPLDAO> sort4WComparator = sortStrikeRateComparator.thenComparing(census -> census.average);
+        this.sort(sort4WComparator);
+        String sorted4sData = new Gson().toJson(csvFileList);
+        return sorted4sData;
+    }
+
     private void sort(Comparator<IPLDAO> iplComparator) {
         for (int i = 0; i < csvFileList.size() - 1; i++) {
             for (int j = 0; j < csvFileList.size() - i - 1; j++) {
@@ -175,7 +186,5 @@ public class CricketAnalyzer {
             }
         }
     }
-
-
 
 }
