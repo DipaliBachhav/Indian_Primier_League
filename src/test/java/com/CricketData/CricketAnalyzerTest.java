@@ -72,7 +72,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnBestStrikeRate() throws CricketAnalyzerException {
+    public void givenCricketLeagueData_whenSorted_shouldReturnBestStrikeRate(){
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
@@ -84,7 +84,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnFours() throws CricketAnalyzerException {
+    public void givenCricketLeagueData_whenSorted_shouldReturnFours(){
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
@@ -97,7 +97,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSix() throws CricketAnalyzerException {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSix(){
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
@@ -109,7 +109,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenCricketLeagueData_whenSortedStrikeRateOfFoursAndSix_shouldReturnFourAndSix() throws CricketAnalyzerException {
+    public void givenCricketLeagueData_whenSortedStrikeRateOfFoursAndSix_shouldReturnFourAndSix(){
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
@@ -121,7 +121,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void GivenCricketLeagueData_whenSorted_ShouldReturnAverageWithBestStrikeRate() throws CricketAnalyzerException {
+    public void GivenCricketLeagueData_whenSorted_ShouldReturnAverageWithBestStrikeRate(){
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
@@ -133,7 +133,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenCricketLeagueData_whenSorted_shouldReturnSortedRunWithBestAverage() throws CricketAnalyzerException {
+    public void givenCricketLeagueData_whenSorted_shouldReturnSortedRunWithBestAverage(){
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadCricketLeagueData(BATSMAN_DATA);
@@ -197,7 +197,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenIplWicketsCSVFile_ShouldReturnPlayerName_WhoHasTopBowlingStrikeRate() throws CricketAnalyzerException {
+    public void givenIplWicketsCSVFile_ShouldReturnPlayerName_WhoHasTopBowlingStrikeRate() {
         try {
             CricketAnalyzer cricketLeagueAnalyser = new CricketAnalyzer();
             cricketLeagueAnalyser.loadWicketData(WICKETS_DATA);
@@ -209,7 +209,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenIplMostWicketsCSVFile_ShouldReturnBowlerName_WhoHasBestEconomyRate() throws CricketAnalyzerException {
+    public void givenIplMostWicketsCSVFile_ShouldReturnBowlerName_WhoHasBestEconomyRate()  {
         try {
             CricketAnalyzer cricketLeagueAnalyser = new CricketAnalyzer();
             cricketLeagueAnalyser.loadWicketData(WICKETS_DATA);
@@ -221,7 +221,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenIplMostWicketsCSVFile_ShouldReturnBowlerName_HasBestStrikingRateWithFourAndFiveWickets() throws CricketAnalyzerException {
+    public void givenIplMostWicketsCSVFile_ShouldReturnBowlerName_HasBestStrikingRateWithFourAndFiveWickets()  {
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadWicketData(WICKETS_DATA);
@@ -233,7 +233,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenIplMostWicketsCSVFile_ShouldReturnBowlerName_HasAverageWithBestStrikeRate() throws CricketAnalyzerException {
+    public void givenIplMostWicketsCSVFile_ShouldReturnBowlerName_HasAverageWithBestStrikeRate(){
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadWicketData(WICKETS_DATA);
@@ -245,7 +245,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenIplMostWicketsCSVFile_whenSortedOnWicketsWithAvg_shouldReturnSortedResult() throws CricketAnalyzerException {
+    public void givenIplMostWicketsCSVFile_whenSortedOnWicketsWithAvg_shouldReturnSortedResult(){
         try {
             CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
             cricketAnalyzer.loadWicketData(WICKETS_DATA);
@@ -257,7 +257,7 @@ public class CricketAnalyzerTest {
     }
 
     @Test
-    public void givenIplMostWicketsCSVFile_whenSortedOnBattingBowlingWithBestAverage() throws CricketAnalyzerException {
+    public void givenIplMostWicketsCSVFile_whenSortedOnBattingBowlingWithBestAverage(){
             try {
                 CricketAnalyzer cricketAnalyzer = new CricketAnalyzer();
                 cricketAnalyzer.loadWicketData(WICKETS_DATA);
