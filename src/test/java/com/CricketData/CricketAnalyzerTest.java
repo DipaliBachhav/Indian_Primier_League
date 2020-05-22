@@ -8,14 +8,14 @@ import org.junit.rules.ExpectedException;
 import java.lang.reflect.Type;
 
 public class CricketAnalyzerTest {
-    private static final String BATSMAN_DATA = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostRuns.csv";
-    private static final String BATSMAN_DATA_INCORRECT_FILE = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostWkts.csv";
-    private static final String BATSMAN_DATA_WITH_WRONG_DELIMETER = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostRuns,csv";
-    private static final String BATSMAN_DATA_EMPTY_FILE = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostRunsEmpty.csv";
-    private static final String WICKETS_DATA = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetMostWkts.csv";
-    private static final String WICKETS_DATA_WRONG_FILE_NAME = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetWickets.csv";
-    private static final String WICKETS_DATA_WRONG_FILE_TYPE = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetWickets.txt";
-    private static final String WICKETS_DATA_WRONG_FILE_DELIMETER = "C:\\Users\\Windows 10\\Desktop\\Indian_Primier_League\\src\\test\\resources\\IPL2019FactsheetWickets,csv";
+    private static final String BATSMAN_DATA = "src/test/resources/IPL2019FactsheetMostRuns.csv";
+    private static final String BATSMAN_DATA_INCORRECT_FILE = "src/test/resources/IPL2019FactsheetMostWkts.csv";
+    private static final String BATSMAN_DATA_WITH_WRONG_DELIMETER = "src/test/resources/IPL2019FactsheetMostRuns,csv";
+    private static final String BATSMAN_DATA_EMPTY_FILE = "src/test/resources/IPL2019FactsheetMostRunsEmpty.csv";
+    private static final String WICKETS_DATA = "src/test/resources/IPL2019FactsheetMostWkts.csv";
+    private static final String WICKETS_DATA_WRONG_FILE_NAME = "src/test/resources/IPL2019FactsheetWickets.csv";
+    private static final String WICKETS_DATA_WRONG_FILE_TYPE = "src/test/resources/IPL2019FactsheetWickets.txt";
+    private static final String WICKETS_DATA_WRONG_FILE_DELIMETER = "src/test/resources/IPL2019FactsheetWickets,csv";
 
 
     @Test
