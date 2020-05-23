@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 
 public class BatsMansCSVFile {
 
-    @CsvBindByName(column = "PLAYER", required = true)
+    @CsvBindByName(column = "PLAYER")
     public String player;
 
     @CsvBindByName(column = "4s")
@@ -26,6 +26,15 @@ public class BatsMansCSVFile {
     public BatsMansCSVFile() {
     }
 
+    public BatsMansCSVFile(String player, int four, int six, int runs, double average, double strikeRate) {
+        this.player = player;
+        this.four = four;
+        this.six = six;
+        this.runs = runs;
+        this.average = average;
+        this.strikeRate = strikeRate;
+    }
+
     @Override
     public String toString() {
         return "IPLRunsDataCsv{" +
@@ -37,4 +46,5 @@ public class BatsMansCSVFile {
                 ", strikeRate=" + strikeRate +
                 '}';
     }
+
 }

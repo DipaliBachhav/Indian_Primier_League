@@ -1,4 +1,13 @@
 package com.CricketData;
 
-public class RunAdapater {
+import com.OpenCsv.CSVBuilderException;
+
+import java.util.Map;
+
+public class RunAdapater extends IPLAdapater{
+    @Override
+    public Map<String, IPLDAO> loadIPLData(String... csvFilePath) throws CricketAnalyzerException, CSVBuilderException {
+        return super.loadIPLData(BatsMansCSVFile.class,csvFilePath[0]);
+    }
 }
+
