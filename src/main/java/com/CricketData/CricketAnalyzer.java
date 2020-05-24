@@ -23,166 +23,98 @@ public class CricketAnalyzer {
         return IPLMap.size();
     }
 
-    public String getBattingAverageWiseSorted() throws CricketAnalyzerException {
+    public String getSortFunction(Comparator<IPLDAO> sortWicketsComparator) throws CricketAnalyzerException {
         if (IPLMap.size() == 0 || IPLMap == null)
             throw new CricketAnalyzerException("No Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> runsComparator = Comparator.comparing( census-> census.average);
         List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
+                .stream()
+                .collect(Collectors.toList());
         this.sort(csvFileList,runsComparator);
-        String sortedCensusJson = new Gson().toJson(csvFileList);
-        return sortedCensusJson;
+        String sortedData = new Gson().toJson(csvFileList);
+        return sortedData;
+    }
+
+    public String getBattingAverageWiseSorted() throws CricketAnalyzerException {
+        Comparator<IPLDAO> runsComparator = Comparator.comparing( census-> census.average);
+        return getSortFunction(runsComparator);
     }
 
     public String getTopStrikeRate() throws CricketAnalyzerException {
-        if(IPLMap.size()==0 || IPLMap ==null)
-            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> runnerComparator=Comparator.comparing(census -> census.strikeRate);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,runnerComparator);
-        String sortedDataJson=new Gson().toJson(csvFileList);
-        return sortedDataJson;
+        return getSortFunction(runnerComparator);
     }
     public String getMaximumSixesInMatch() throws CricketAnalyzerException {
-        if(IPLMap.size()==0 || IPLMap ==null)
-            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> runnerComparator=Comparator.comparing(census -> census.six);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,runnerComparator);
-        String sortedDataJson=new Gson().toJson(csvFileList);
-        return sortedDataJson;
+        return getSortFunction(runnerComparator);
     }
 
     public String getMaximumFoursInMatch() throws CricketAnalyzerException {
-        if(IPLMap.size()==0 || IPLMap==null)
-            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> runnerComparator=Comparator.comparing(census -> census.four);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,runnerComparator);
-        String sortedDataJson=new Gson().toJson(csvFileList);
-        return sortedDataJson;
+        return getSortFunction(runnerComparator);
+
     }
     public String getSortedStrikeRateOfFoursAndSixs() throws CricketAnalyzerException {
-        if(IPLMap.size()==0 || IPLMap ==null)
-            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> sortStrikeComparator = Comparator.comparing(census -> census.strikeRate);
         Comparator<IPLDAO> sortSixComparator = sortStrikeComparator.thenComparing(census -> census.strikeRate);
         Comparator<IPLDAO> sortFourCompartor=sortSixComparator.thenComparing(census->census.four);
         Comparator<IPLDAO> avgComparator=Comparator.comparing(census -> census.strikeRate);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,sortFourCompartor);
-        String sortedDataJson=new Gson().toJson(csvFileList);
-        return sortedDataJson;
+        return getSortFunction(avgComparator);
+
     }
 
     public String getSortedDataAverageWithBestStrikeRate() throws CricketAnalyzerException {
-        if(IPLMap.size()==0 || IPLMap ==null)
-            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> sortStrikeComparator = Comparator.comparing(census -> census.strikeRate);
         Comparator<IPLDAO> avgComparator=Comparator.comparing(census -> census.average);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,avgComparator);
-        String sortedDataJson=new Gson().toJson(csvFileList);
-        return sortedDataJson;
+        return getSortFunction(avgComparator);
+
     }
 
     public String getSortedRunsWithBestAverage() throws CricketAnalyzerException {
-        if(IPLMap.size()==0 || IPLMap ==null)
-            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> runnerComparator=Comparator.comparing(census -> census.runs);
         Comparator<IPLDAO> avgComparator=runnerComparator.thenComparing(census -> census.average);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,avgComparator);
-        String sortedDataJson=new Gson().toJson(csvFileList);
-        return sortedDataJson;
+        return getSortFunction(avgComparator);
+
     }
 
     public String getSortedWicketsAverageData() throws CricketAnalyzerException {
-        if(IPLMap.size()==0 || IPLMap ==null)
-            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> runsComparator = Comparator.comparing( census-> census.average);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,runsComparator);
-        String sortedCensusJson = new Gson().toJson(csvFileList);
-        return sortedCensusJson;
+        return getSortFunction(runsComparator);
+
     }
     public String getSortedByBowlingStrikeRate() throws CricketAnalyzerException {
-        if(IPLMap.size()==0 || IPLMap ==null)
-            throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> runsComparator = Comparator.comparing( census-> census.strikeRate);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,runsComparator);
-        String sortedCensusJson = new Gson().toJson(csvFileList);
-        return sortedCensusJson;
+        return getSortFunction(runsComparator);
+
     }
     public String getSortedByEconomyRate() throws CricketAnalyzerException {
         if(IPLMap.size()==0 || IPLMap ==null)
             throw new CricketAnalyzerException("NO Data",CricketAnalyzerException.ExceptionType.NO_DATA);
         Comparator<IPLDAO> runsComparator = Comparator.comparing( census-> census.economyRate);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,runsComparator);
-        String sortedCensusJson = new Gson().toJson(csvFileList);
-        return sortedCensusJson;
+        return getSortFunction(runsComparator);
     }
 
     public String getBowlingStrikeRateWiseSortingWith5wAnd4wOnData() throws CricketAnalyzerException {
-        if (IPLMap == null || IPLMap.size() == 0) {
-            throw new CricketAnalyzerException("No Census Data", CricketAnalyzerException.ExceptionType.NO_DATA);
-        }
         Comparator<IPLDAO> sortStrikeRateComparator = Comparator.comparing(census -> census.strikeRate);
         Comparator<IPLDAO> sort4WComparator = sortStrikeRateComparator.thenComparing(census -> census.fourWickets);
         Comparator<IPLDAO> sort5WCompartor = sort4WComparator.thenComparing(census -> census.fiveWickets);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,sort5WCompartor);
-        String sorted4sData = new Gson().toJson(csvFileList);
-        return sorted4sData;
+       return getSortFunction(sort5WCompartor);
     }
 
     public String getWicketsWiseSortDataWithBestAvgerage() throws CricketAnalyzerException {
-        if (IPLMap == null || IPLMap.size() == 0) {
-            throw new CricketAnalyzerException("No Census Data", CricketAnalyzerException.ExceptionType.NO_DATA);
-        }
         Comparator<IPLDAO> sortStrikeRateComparator = Comparator.comparing(census -> census.wickets);
         Comparator<IPLDAO> sort4WComparator = sortStrikeRateComparator.thenComparing(census -> census.average);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,sort4WComparator);
-        String sorted4sData = new Gson().toJson(csvFileList);
-        return sorted4sData;
+        return getSortFunction(sort4WComparator);
+
     }
     public String getSortingOnBattingAndBowlingWithBestAverage() throws CricketAnalyzerException {
-        if (IPLMap == null || IPLMap.size() == 0) {
-            throw new CricketAnalyzerException("No Census Data", CricketAnalyzerException.ExceptionType.NO_DATA);
-        }
         Comparator<IPLDAO> sortAvgerageComparator = Comparator.comparing(census -> census.average);
-        List<IPLDAO> csvFileList=IPLMap.values()
-                                        .stream()
-                                        .collect(Collectors.toList());
-        this.sort(csvFileList,sortAvgerageComparator);
-        String sorted4sData = new Gson().toJson(csvFileList);
-        return sorted4sData;
+        return getSortFunction(sortAvgerageComparator);
+    }
+    public String getSortingOnMostRunsAndWicketsOnData() throws CricketAnalyzerException {
+        Comparator<IPLDAO> sortRunsComparator = Comparator.comparing(census -> census.runs);
+        Comparator<IPLDAO> sortWicketsComparator = sortRunsComparator.thenComparing(census -> census.wickets);
+        return getSortFunction(sortWicketsComparator);
     }
 
     private void sort(List<IPLDAO>csvFileList,Comparator<IPLDAO> iplComparator) {
