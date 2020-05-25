@@ -36,7 +36,7 @@ public class IPLDAO {
         this.bestBowlingIn = iplWicketDataCSV.bestBowlingIn;
         this.average = iplWicketDataCSV.average;
         this.economyRate = iplWicketDataCSV.economyRate;
-        this.strikeRate = iplWicketDataCSV.strikeRate;
+        this.strikeRate = iplWicketDataCSV.wicketStrikeRate;
         this.fourWickets = iplWicketDataCSV.fourWickets;
         this.fiveWickets = iplWicketDataCSV.fiveWickets;
     }

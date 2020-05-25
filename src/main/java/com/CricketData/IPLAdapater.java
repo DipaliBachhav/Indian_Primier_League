@@ -21,18 +21,18 @@ public abstract class IPLAdapater {
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator<E> csvFileIterator = csvBuilder.getCSVFileIterator(reader, iplCSVClass);
-            Iterable<E> censusCSVIterable = () -> csvFileIterator;
+            Iterable<E> csvIterable = () -> csvFileIterator;
             if (iplCSVClass.getName().equals("com.CricketData.BatsMansCSVFile")) {
-                StreamSupport.stream(censusCSVIterable.spliterator(), false)
+                StreamSupport.stream(csvIterable.spliterator(), false)
                         .map(BatsMansCSVFile.class::cast)
                         .forEach(iplCSV -> IPLMap.put(iplCSV.player, new IPLDAO(iplCSV)));
             } else if (iplCSVClass.getName().equals("com.CricketData.IPLWicketDataCSV")) {
-                StreamSupport.stream(censusCSVIterable.spliterator(), false)
+                StreamSupport.stream(csvIterable.spliterator(), false)
                         .map(IPLWicketDataCSV.class::cast)
                         .forEach(iplCSV -> IPLMap.put(iplCSV.player, new IPLDAO(iplCSV)));
             }
             return IPLMap;
-        } catch (IOException e) {
+        }  catch(IOException | CSVBuilderException e){
             throw new CricketAnalyzerException(e.getMessage(),
                     CricketAnalyzerException.ExceptionType.IPL_FILE_PROBLEM);
         }

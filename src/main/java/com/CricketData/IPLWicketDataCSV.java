@@ -3,7 +3,7 @@ package com.CricketData;
 import com.opencsv.bean.CsvBindByName;
 
 public class IPLWicketDataCSV {
-        @CsvBindByName(column = "PLAYER")
+        @CsvBindByName(column = "PLAYER" ,required = true)
         public String player;
 
         @CsvBindByName(column = "Mat")
@@ -31,7 +31,7 @@ public class IPLWicketDataCSV {
         public double economyRate;
 
         @CsvBindByName(column = "SR")
-        public double strikeRate;
+        public double wicketStrikeRate;
 
         @CsvBindByName(column = "4w")
         public int fourWickets;
@@ -39,10 +39,10 @@ public class IPLWicketDataCSV {
         @CsvBindByName(column = "5w")
         public int fiveWickets;
 
-        public IPLWicketDataCSV(String player,int runs, int wickets,
+        /*public IPLWicketDataCSV(String player,int runs, int wickets,
                                 double bestBowlingIn, double average, double economyRate, double strikeRate,
                                 int fourWickets, int fiveWickets) {
-        }
+        }*/
 
         @Override
         public String toString() {
@@ -56,7 +56,7 @@ public class IPLWicketDataCSV {
                     ", bestBowlingIn=" + bestBowlingIn +
                     ", average=" + average +
                     ", economyRate=" + economyRate +
-                    ", strikeRate=" + strikeRate +
+                    ", strikeRate=" + wicketStrikeRate +
                     ", fourWickets=" + fourWickets +
                     ", fiveWickets=" + fiveWickets +
                     '}';
